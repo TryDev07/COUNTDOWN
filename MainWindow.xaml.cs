@@ -17,6 +17,8 @@ using System.Net;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using COUNTDOWN.Managers;
+using MySql.Data.MySqlClient;
 
 namespace COUNTDOWN
 {
@@ -36,7 +38,19 @@ namespace COUNTDOWN
 
             //MessageBox.Show(Directory.GetCurrentDirectory());
             //checkForUpdate();
-         }
+            MySqlManager mySqlManager =  new MySqlManager();
+            mySqlManager.OpenConnection();
+            string query = "SELECT * FROM bosscountdown";
+            MySqlCommand cmd = new MySqlCommand(query, mySqlManager.getConnection());
+            
+            MySqlDataReader  reader = cmd.ExecuteReader();
+            
+            while (reader.Read())
+            {
+                MessageBox.Show(reader.GetString("Monday"));
+            }
+            
+        }
 
 
         

@@ -9,7 +9,7 @@ namespace COUNTDOWN.Managers
 {
     class DataManager
     {
-
+        
         private static Dictionary<String, DataManager> DataManagerMap = new Dictionary<String, DataManager>();
 
         public static DataManager getDataManager(String name)
